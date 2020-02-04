@@ -63,7 +63,7 @@ fn clone{
 	'} |[3] tr '\x0d' '\x0a' || die 'could not clone repository'
 
 	tree=/mnt/git/HEAD/tree
-	lbranch=`{git/branch}
+	lbranch=`{git9/branch}
 	rbranch=`{echo $lbranch | sed 's@^heads@remotes/origin@'}
 	echo checking out repository...
 

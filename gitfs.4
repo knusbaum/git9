@@ -1,10 +1,10 @@
 .TH GITFS 4
 .SH NAME
-git/fs \- git file server
+git9/fs \- git file server
 
 .SH SYNOPSIS
 
-git/fs
+git9/fs
 [
 .B -d
 ]
@@ -16,15 +16,15 @@ git/fs
 .SH DESCRIPTION
 
 .PP
-Git/fs serves a file system interface to a git repository in the
+Git9/fs serves a file system interface to a git repository in the
 current directory.
 This file system provides a read-only view into the repository contents.
 By default, it is mounted on
 .B /mnt/git.
-It does not cache mutable data, so any changes to the git repository will immediately be reflected in git/fs.
+It does not cache mutable data, so any changes to the git repository will immediately be reflected in git9/fs.
 
 .PP
-Git/fs serves a few levels of hierarchy.
+Git9/fs serves a few levels of hierarchy.
 The top level contains the following files and directories:
 
 .TP
@@ -96,7 +96,7 @@ The global configuration for git tools.
 .B /sys/src/cmd/git/fs.c
 
 .SH "SEE ALSO"
-.IR git (1)
+.IR git9 (1)
 .IR hg (1)
 .IR hgfs (4)
 

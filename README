@@ -66,13 +66,13 @@ Examples
 
 Some usage examples:
 
-	git/clone git://git.eigenstate.org/ori/mc.git
-	git/log
+	git9/clone git://git.eigenstate.org/ori/mc.git
+	git9/log
 	cd subdir/name
-	git/add foo.c
+	git9/add foo.c
 	diff bar.c /mnt/git/HEAD/
-	git/commit foo.c
-	git/push
+	git9/commit foo.c
+	git9/push
 
 Commits are presented as directories with the following
 contents:
@@ -102,7 +102,7 @@ So, for example:
 	/mnt/git/object/7d539a7c08aba3f31b3913e0efef11c43ea9f9ef/parent
 	/mnt/git/object/7d539a7c08aba3f31b3913e0efef11c43ea9f9ef/tree
 
-	# what git/diff will hopefully do more concisely soon, filtering
+	# what git9/diff will hopefully do more concisely soon, filtering
 	# out the non-git files.
 	ape/diff -ur /mnt/git/branch/heads/master/tree .
 	Only in .: .git
@@ -150,3 +150,11 @@ To use git9 on 9legacy, these patches are necessary.
 Additionally, git9 defaults to editing with hold(1). This command
 is not present on 9legacy. Import it, or set $editor to your choice
 of editor.
+
+knusbaum's notes
+-------------
+I've moved everything git/* to git9/*. The reason is that 9front ships with a git binary that this git shadows by default. I want to be able to use that git and this one.
+
+This regex helped find instances:
+egrep -Rin '[^/.]git/' .
+
