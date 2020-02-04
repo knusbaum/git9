@@ -1,25 +1,25 @@
-.TH GIT 1
+.TH GIT9 1
 .SH NAME
-git, git/conf, git/query, git/walk, git/clone, git/branch,
-git/commit, git/diff, git/init, git/log, git/merge, git/push, git/pull
+git9, git9/conf, git9/query, git9/walk, git9/clone, git9/branch,
+git9/commit, git9/diff, git9/init, git9/log, git9/merge, git9/push, git9/pull
 \- Manage git repositories.
 
 .SH SYNOPSIS
 .PP
-.B git/add
+.B git9/add
 [
 .B -r
 ]
 .I path...
 .PP
-.B git/branch
+.B git9/branch
 [
 .B -b
 .I base
 ]
 .I newbranch
 .PP
-.B git/clone
+.B git9/clone
 [
 .I remote
 [
@@ -27,13 +27,13 @@ git/commit, git/diff, git/init, git/log, git/merge, git/push, git/pull
 ]
 ]
 .PP
-.B git/commit
+.B git9/commit
 [
 .B -m msg
 ]
 .I file...
 .PP
-.B git/conf
+.B git9/conf
 [
 .B -r
 ]
@@ -43,7 +43,7 @@ git/commit, git/diff, git/init, git/log, git/merge, git/push, git/pull
 ]
 .I keys...
 .PP
-.B git/diff
+.B git9/diff
 [
 .B -c
 .I branch
@@ -55,24 +55,24 @@ git/commit, git/diff, git/init, git/log, git/merge, git/push, git/pull
 .I file...
 ]
 .PP
-.B git/revert
+.B git9/revert
 [
 .B -c
 .I commit
 ]
 .I file...
 .PP
-.B git/export
+.B git9/export
 [
 .I commits...
 ]
 .PP
-.B git/import
+.B git9/import
 [
 .I commits...
 ]
 .PP
-.B git/init
+.B git9/init
 [
 .B -b
 ]
@@ -84,7 +84,7 @@ git/commit, git/diff, git/init, git/log, git/merge, git/push, git/pull
 .I upstream
 ]
 .PP
-.B git/log
+.B git9/log
 [
 .B -c
 .I commit
@@ -98,10 +98,10 @@ git/commit, git/diff, git/init, git/log, git/merge, git/push, git/pull
 .I files...
 ]
 .PP
-.B git/merge
+.B git9/merge
 .I theirs
 .PP
-.B git/pull
+.B git9/pull
 [
 .B -f
 ]
@@ -110,7 +110,7 @@ git/commit, git/diff, git/init, git/log, git/merge, git/push, git/pull
 .I upstream
 ]
 .PP
-.B git/push
+.B git9/push
 [
 .B -a
 ]
@@ -127,13 +127,13 @@ git/commit, git/diff, git/init, git/log, git/merge, git/push, git/pull
 .I branch
 ]
 .PP
-.B git/query
+.B git9/query
 [
 .B -pc
 ]
 .I query
 .PP
-.B git/walk
+.B git9/walk
 [
 .B -qc
 ]
@@ -184,7 +184,7 @@ in the file API.
 .SH COMMANDS
 
 .PP
-.B Git/init
+.B Git9/init
 is used to create a new git repository, with no code or commits.
 The repository is created in the current directory by default.
 Passing a directory name will cause the repository to be created
@@ -199,7 +199,7 @@ option will cause the upstream to be configured to
 .I upstream.
 
 .PP
-.B Git/clone
+.B Git9/clone
 will take an existing repository, served over either the
 .I git://
 or
@@ -212,7 +212,7 @@ of the clone source, with the
 .I .git
 stripped off if present.
 
-.B Git/push
+.B Git9/push
 is used to push the current changes to a remote repository.
 When no arguments are provided, the remote repository is taken from
 the origin configured in
@@ -230,8 +230,8 @@ When given the
 .I -r
 option, the branch is deleted from origin, instead of updated.
 
-.B Git/pull
-behaves in a similar manner to git/push, however it gets changes from
+.B Git9/pull
+behaves in a similar manner to git9/push, however it gets changes from
 the upstream repository.
 After fetching, it checks out the changes into the working directory.
 When passed the
@@ -243,9 +243,8 @@ option, the changes are pulled from
 .I upstream
 instead of the configured origin.
 
-
 .PP
-Git/fs serves the following directories:
+Git9/fs serves the following directories:
 
 .TP
 /mnt/git/object
@@ -262,18 +261,18 @@ Currently, it only shows the current branch.
 An alias for the currently checked out commit directory.
 
 .PP
-.B Git/add
+.B Git9/add
 adds a file to the list of tracked files. When passed the
 .I -r
 flag, the file is removed from the list of tracked files.
 The copy of the file in the repository is left untouched.
 
 .PP
-.B Git/commit
+.B Git9/commit
 creates a new commit which updates the files passed.
 
 .PP
-.B Git/branch
+.B Git9/branch
 is used to switch between branches.
 When passed the
 .I -c
@@ -289,7 +288,7 @@ When passed the
 option, the branch is created but the files are not checked out.
 
 .PP
-.B Git/log
+.B Git9/log
 shows a history of the current branch.
 When passed a list of files, only commits affecting
 those files are shown.
@@ -303,10 +302,10 @@ The
 .I -q query
 option shows commits matching the query provided. The query
 is specified using the syntax of
-.B git/query.
+.B git9/query.
 
 .PP
-.B Git/diff
+.B Git9/diff
 shows the differences between the currently checked out code and
 the
 .I HEAD
@@ -323,24 +322,24 @@ option, only a the file statuses are
 printed.
 
 .PP
-.B Git/export
+.B Git9/export
 exports a list of commits in a format that
-.B git/import
+.B git9/import
 can apply.
 
 .PP
-.B Git/import
+.B Git9/import
 imports a commit with message, author, and
 date information.
 
 .PP
-.B Git/merge
+.B Git9/merge
 takes two branches and merges them filewise using
 .I ape/diff3.
 The next commit made will be a merge commmit.
 
 .PP
-.B Git/conf
+.B Git9/conf
 is a tool for querying the git configuration.
 The configuration key is provided as a dotted string. Spaces
 are accepted. For example, to find the URL of the origin
@@ -350,20 +349,20 @@ When given the
 .I -r
 option, the root of the current repository is printed.
 
-.B Git/query
+.B Git9/query
 takes an expression describing a commit, or set of commits,
 and resolves it to a list of commits. With the
 .I -p
 option, instead of printing the commit hashes, the full
 path to their
-.B git/fs
+.B git9/fs
 path is printed. With the
 .I -c
 option, the query must resolve to two commits. The blobs
 that have changed in the commits are printed.
 
 .PP
-.B Git/walk
+.B Git9/walk
 provides a tool for walking the list of tracked objects and printing their status.
 With no arguments, it prints a list of paths prefixed with the status character.
 When given the
@@ -420,19 +419,19 @@ and descendants of
 
 .PP
 In order to create a new repository, run
-.B git/init:
+.B git9/init:
 
 .EX
-git/init myrepo
+git9/init myrepo
 .EE
 
 To clone an existing repository from a git server, run:
 .EX
-git/clone git://github.com/Harvey-OS/harvey
+git9/clone git://github.com/Harvey-OS/harvey
 cd harvey
 # edit files
-git/commit foo.c
-git/push
+git9/commit foo.c
+git9/push
 .EE
 
 .SH FILES

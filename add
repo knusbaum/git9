@@ -3,7 +3,7 @@ rfork ne
 . /sys/lib/git/common.rc
 
 usage='
-	git/add [-r] file ...
+	git9/add [-r] file ...
 		-r        remove file
 '
 
@@ -38,7 +38,7 @@ for(f in $files){
 		mkdir -p `{basename -d $addpath}
 		mkdir -p `{basename -d $delpath}
 		# We don't want a matching qid, so that
-		# git/walk doesn't think this came from
+		# git9/walk doesn't think this came from
 		# a checkout.
 		if(! test -e $addpath)
 			touch $addpath

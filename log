@@ -3,13 +3,13 @@ rfork en
 . /sys/lib/git/common.rc
 
 usage='
-	git/log [-q query|-c commit] [-s] [file ...]
+	git9/log [-q query|-c commit] [-s] [file ...]
 '
 
 gitup
 
 base=/mnt/git/object/
-branch=`{git/branch}
+branch=`{git9/branch}
 query=()
 short=()
 files=()
@@ -31,9 +31,9 @@ while(~ $1 -* && ! ~ $1 --){
 if(~ $1 --)
 	shift
 if(~ $#query 0)
-	commits=`{git/query $branch}
+	commits=`{git9/query $branch}
 if not
-	commits=`{git/query $query}
+	commits=`{git9/query $query}
 
 if(! ~ $#* 0)
 	files=`"{walk -f $gitrel/^$* | subst '^\./' | sort}
@@ -43,7 +43,7 @@ while(! ~ $#commits 0){
 	show=()
 	c=$commits(1)
 	if(! ~ $#files 0){
-		ncomm=`{comm -12 /env/files <{git/query -c $c~ $c | subst '^..' | sort} | wc -l}
+		ncomm=`{comm -12 /env/files <{git9/query -c $c~ $c | subst '^..' | sort} | wc -l}
 		if(! ~ $ncomm 0)
 			show=true
 	}

@@ -394,7 +394,7 @@ gitattach(Req *r)
 	Dir *d;
 
 	if((d = dirstat(".git")) == nil)
-		sysfatal("git/fs: %r");
+		sysfatal("git9/fs: %r");
 	if(getwd(gitdir, sizeof(gitdir)) == nil)
 		sysfatal("getwd: %r");
 	aux = emalloc(sizeof(Gitaux));

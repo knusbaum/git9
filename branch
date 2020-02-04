@@ -3,7 +3,7 @@ rfork en
 . /sys/lib/git/common.rc
 
 usage='
-	git/branch [-cdsu] [-b base] [branch]
+	git9/branch [-cdsu] [-b base] [branch]
 		-b base   base new branch on "base" (default: current branch)
 		-c        clobber or create branch
 		-d        delete branch
@@ -47,18 +47,18 @@ if not if(~ $1 heads/*)
 if not
 	new=refs/heads/$1
 if (~ $#baseref 1)
-	base=`{git/query $baseref}
+	base=`{git9/query $baseref}
 if not if(test -e .git/$new)
-	base=`{git/query $new}
+	base=`{git9/query $new}
 if not
-	base=`{git/query HEAD}
+	base=`{git9/query HEAD}
 
-modified=`$nl{git/query -c HEAD $base | grep '^[^-]' | subst '^..'}
-deleted=`$nl{git/query -c HEAD $base | grep '^-' | subst '^..'}
+modified=`$nl{git9/query -c HEAD $base | grep '^[^-]' | subst '^..'}
+deleted=`$nl{git9/query -c HEAD $base | grep '^-' | subst '^..'}
 
 if(! ~ $#modified 0 || ! ~ $#deleted 0){
-	if(! git/walk -q $modified $deleted){
-		git/walk -fRMA $modified $deleted
+	if(! git9/walk -q $modified $deleted){
+		git9/walk -fRMA $modified $deleted
 		die 'uncommited changes would be clobbered'
 	}
 }
@@ -66,13 +66,14 @@ if(! ~ $#delete 0){
 	rm -f .git/$new
 	exit
 }
+
 if(~ $#create 0){
 	if(! test -e .git/$new)
 		die could not find branch $1
 	if(! ~ $#baseref 0)
 		die update would clobber $1 with $baseref
 }
-commit=`{git/query $base || die 'branch does not exist:' $base}
+commit=`{git9/query $base || die 'branch does not exist:' $base}
 echo updating $new to $commit
 echo $commit > .git/$new
 
@@ -81,7 +82,7 @@ if(! ~ $#stay 0)
 	exit
 
 if(! ~ $#modified 0){
-	basedir=`{git/query -p $base}
+	basedir=`{git9/query -p $base}
 	for(m in $modified){
 		d=`{basename -d $m}
 		mkdir -p $d

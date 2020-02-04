@@ -3,12 +3,12 @@ rfork ne
 . /sys/lib/git/common.rc
 
 usage='
-	git/commit files...
+	git9/commit files...
 '
 
 fn whoami{
-	name=`{git/conf user.name}
-	email=`{git/conf user.email}
+	name=`{git9/conf user.name}
+	email=`{git9/conf user.email}
 	if(test -f /adm/keys.who){
 		if(~ $name '')
 			name=`{awk -F'|' '$1=="'$user'" {x=$3} END{print x}' </adm/keys.who}
@@ -22,7 +22,7 @@ fn whoami{
 }
 
 fn findbranch{
-	branch=`{git/branch}
+	branch=`{git9/branch}
 	if(test -e /mnt/git/branch/$branch/tree){
 		refpath=.git/refs/$branch
 		initial=false
@@ -62,11 +62,11 @@ fn editmsg{
 			echo '#'
 			for(p in $parents)
 				echo '# parent:' $p
-			git/walk -fAMR $files | subst -g '^' '# '
+			git9/walk -fAMR $files | subst -g '^' '# '
 			echo '#'
 			echo '# Commit message:'
 		}
-		giteditor=`{git/conf core.editor}
+		giteditor=`{git9/conf core.editor}
 		if(~ $#editor 0)
 			editor=$giteditor
 		if(~ $#editor 0)
@@ -84,14 +84,14 @@ fn parents{
 	if not if(~ $initial true)
 		parents=()
 	if not
-		parents=`{git/query $branch}
+		parents=`{git9/query $branch}
 }
 
 fn commit{
 	msg=`"{cat $msgfile}
 	if(! ~ $#parents 0)
 		pflags='-p'^$parents
-	hash=`{git/save -n $"name -e $"email  -m $"msg $pflags $files || die $status}
+	hash=`{git9/save -n $"name -e $"email  -m $"msg $pflags $files || die $status}
 	rm -f .git/index9/merge-parents
 }
 
@@ -133,7 +133,7 @@ if(~ $1 --)
 if(~ $#* 0)
 	usage
 
-files=`{git/walk -c `{cleanname $gitrel/$*}}
+files=`{git9/walk -c `{cleanname $gitrel/$*}}
 if(~ $status '' || ~ $#files 0 && ! test -f .git/index9/merge-parents)
 	die 'nothing to commit' $status
 @{

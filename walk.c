@@ -142,7 +142,7 @@ findroot(void)
 	char path[256], buf[256], *p;
 
 	if(access("/mnt/git/ctl", AEXIST) != 0)
-		sysfatal("no running git/fs");
+		sysfatal("no running git9/fs");
 	if((getwd(path, sizeof(path))) == nil)
 		sysfatal("could not get wd: %r");
 	while((p = strrchr(path, '/')) != nil){
@@ -258,7 +258,7 @@ main(int argc, char **argv)
 	dirty = 0;
 	memset(&r, 0, sizeof(r));
 	if(access("/mnt/git/ctl", AEXIST) != 0)
-		sysfatal("git/fs does not seem to be running");
+		sysfatal("git9/fs does not seem to be running");
 	if(printflg == 0)
 		printflg = Tflg | Aflg | Mflg | Rflg;
 	if(argc == 0){

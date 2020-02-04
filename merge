@@ -3,7 +3,7 @@ rfork ne
 . /sys/lib/git/common.rc
 
 usage='
-	git/merge theirs
+	git9/merge theirs
 '
 
 fn merge{
@@ -33,13 +33,13 @@ gitup
 if(! ~ $#* 1)
 	usage
 
-theirs=`{git/query $1}
-ours=`{git/query HEAD}
-base=`{git/query $theirs ^ ' ' ^ $ours ^ '@'}
+theirs=`{git9/query $1}
+ours=`{git9/query HEAD}
+base=`{git9/query $theirs ^ ' ' ^ $ours ^ '@'}
 
 if(~ $base $ours || ~ $base $theirs)
 	die 'nothing to merge, doofus'
-if(! git/walk -q)
+if(! git9/walk -q)
 	die 'dirty work tree, refusing to merge'
 echo $ours >> .git/index9/merge-parents
 echo $theirs >> .git/index9/merge-parents

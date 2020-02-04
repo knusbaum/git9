@@ -3,7 +3,7 @@ rfork ne
 . /sys/lib/git/common.rc
 
 usage='
-	git/init [-b] [-u upstream] name
+	git9/init [-b] [-u upstream] name
 		-b        init bare repository
 		-u        set remote "origin" to upstream
 '
