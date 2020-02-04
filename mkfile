@@ -1,6 +1,6 @@
 </$objtype/mkfile
 
-BIN=/$objtype/bin/git
+BIN=/$objtype/bin/git9
 TARG=\
 	conf\
 	fetch\
@@ -45,7 +45,7 @@ install:V:
 		mk $MKFLAGS $i.install
 	for (i in $RC)
 		mk $MKFLAGS $i.rcinstall
-	cp git.1 /sys/man/1/git
+	cp git9.1 /sys/man/1/git9
 	cp gitfs.4 /sys/man/4/gitfs
 	cp common.rc /sys/lib/git/common.rc
 	mk $MKFLAGS /sys/lib/git/template

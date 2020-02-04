@@ -3,7 +3,7 @@ rfork ne
 . /sys/lib/git/common.rc
 
 usage='
-	git/export [query]
+	git9/export [query]
 '
 
 gitup
@@ -11,14 +11,14 @@ gitup
 q=$*
 if(~ $#q 0)
 	q=HEAD
-commits=`{git/query $q || die $status}
+commits=`{git9/query $q || die $status}
 
 scratch=/tmp/gitexport.$pid
 mkdir -p $scratch
 mkdir $scratch/a $scratch/b
 for(c in $commits){
-	cp=`{git/query -p $c}
-	pp=`{git/query -p $c'^'}
+	cp=`{git9/query -p $c}
+	pp=`{git9/query -p $c'^'}
 
 	@{
 		rfork n

@@ -3,7 +3,7 @@ rfork ne
 . /sys/lib/git/common.rc
 
 usage='
-	git/merge theirs
+	git9/merge theirs
 '
 
 fn merge{
@@ -30,9 +30,9 @@ gitup
 if(! ~ $#* 1)
 	usage
 
-theirs=`{git/query $1}
-ours=`{git/query HEAD}
-base=`{git/query $theirs ^ ' ' ^ $ours ^ '@'}
+theirs=`{git9/query $1}
+ours=`{git9/query HEAD}
+base=`{git9/query $theirs ^ ' ' ^ $ours ^ '@'}
 
 merge /mnt/git/object/$ours /mnt/git/object/$base /mnt/git/object/$theirs
 echo $ours $theirs > .git/index9/merge-parents

@@ -3,7 +3,7 @@ rfork en
 . /sys/lib/git/common.rc
 
 usage='
-	git/clone remote [local]
+	git9/clone remote [local]
 '
 
 remote=$1
@@ -29,7 +29,7 @@ fn clone{
 	echo '[remote "origin"]' 				>> .git/config
 	echo '	url='$remote					>> .git/config
 	echo '	fetch=+refs/heads/*:refs/remotes/origin/*'	>> .git/config
-	{git/fetch $remote >[2=3] | awk '
+	{git9/fetch $remote >[2=3] | awk '
 		/^remote/{
 			if($2=="HEAD"){
 				headhash=$3
@@ -66,9 +66,10 @@ fn clone{
 	lbranch=`{git/branch}
 	rbranch=`{echo $lbranch | sed 's@^heads@remotes/origin@'}
 	echo checking out repository...
+
 	if(test -f .git/refs/$rbranch){
 		cp .git/refs/$rbranch .git/refs/$lbranch
-		git/fs
+		git9/fs
 		@ {builtin cd $tree && tar cif /fd/1 .} | @ {tar xf /fd/0} \
 			|| die 'checkout failed:' $status
 		for(f in `$nl{walk -f $tree | sed 's@^'$tree'/*@@'}){
@@ -81,7 +82,7 @@ fn clone{
 	}
 	if not{
 		echo no master branch >[1=2]
-		echo check out your code with git/branch >[1=2]
+		echo check out your code with git9/branch >[1=2]
 	}
 }
 

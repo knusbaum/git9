@@ -3,15 +3,15 @@ rfork ne
 . /sys/lib/git/common.rc
 
 usage='
-	git/import [file ...]
+	git9/import [file ...]
 '
 
 fn apply @{
-	git/fs
+	git9/fs
 	email=''
 	name=''
 	msg=''
-	parents='-p'^`{git/query HEAD}
+	parents='-p'^`{git9/query HEAD}
 	diffpath=/tmp/gitimport.$pid.diff
 	branch=`{awk '$1=="branch"{print $2}' < /mnt/git/ctl}
 	if(test -e /mnt/git/branch/$branch/tree)
@@ -73,12 +73,12 @@ fn apply @{
 		files=`$nl{ape/patch -Ep1 < $diffpath | sed ''s/^patching file `(.*)''''/\1/''}
 		for(f in $files){
 			if(test -e $f)
-				git/add $f
+				git9/add $f
 			if not
-				git/add -r $f
+				git9/add -r $f
 		}
-		git/walk -fRMA $files
-		hash=`{git/save -n $name -e $email -m $msg -d $date $parents $files}
+		git9/walk -fRMA $files
+		hash=`{git9/save -n $name -e $email -m $msg -d $date $parents $files}
 		echo $hash > $refpath
 	'
 }

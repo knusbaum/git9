@@ -3,12 +3,12 @@ rfork ne
 . /sys/lib/git/common.rc
 
 usage='
-	git/commit files...
+	git9/commit files...
 '
 
 fn whoami{
-	name=`{git/conf user.name}
-	email=`{git/conf user.email}
+	name=`{git9/conf user.name}
+	email=`{git9/conf user.email}
 	msgfile=.git/git-msg.$pid
 	if(test -f /adm/keys.who){
 		if(~ $name '')
@@ -42,10 +42,10 @@ fn findbranch{
 
 fn editmsg{
 	echo '# Author: '$"name' <'$"email'>' >> $msgfile.tmp
-	echo '#' $nl'# ' ^ `$nl{git/walk -fAMR $files} >> $msgfile.tmp
+	echo '#' $nl'# ' ^ `$nl{git9/walk -fAMR $files} >> $msgfile.tmp
 	echo '#' >> $msgfile.tmp
 	echo '# Commit message:' >> $msgfile.tmp
-	giteditor=`{git/conf core.editor}
+	giteditor=`{git9/conf core.editor}
 	if(~ $#editor 0)
 		editor=$giteditor
 	if(~ $#editor 0)
@@ -69,7 +69,7 @@ fn commit{
 	msg=`"{cat $msgfile}
 	if(! ~ $#parents 0)
 		pflags='-p'^$parents
-	hash=`{git/save -n $"name -e $"email  -m $"msg $pflags $files || die $status}
+	hash=`{git9/save -n $"name -e $"email  -m $"msg $pflags $files || die $status}
 }
 
 fn update{
@@ -102,7 +102,7 @@ msgfile=/tmp/git-msg.$pid
 mkdir -p .git/refs
 if(~ $#* 0)
 	usage
-files=`{git/walk -c `{cleanname $gitrel/$*}}
+files=`{git9/walk -c `{cleanname $gitrel/$*}}
 if(~ $status '' || ~ $#files 0)
 	die 'nothing to commit' $status
 @{

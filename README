@@ -1,4 +1,4 @@
-Git for Plan 9: git/fs
+Git for Plan 9: git9/fs
 ======================
 
 All commits in this repository were made with git9 running on 9front.
@@ -10,23 +10,23 @@ Plan 9 is a non-posix system. Upstream git has been ported, but feels
 distinctly un-plan9ish, and even in its native environment, has been
 justifiably tarred and feathered for its user experience.
 
-Git/fs implements a git client for plan 9.  The intent is to support
+Git9/fs implements a git client for plan 9.  The intent is to support
 working with git repositories, without cloning the git interface
 directly.
 
-Git/fs is usable, but not battle tested. It works for me, and covers
+Git9/fs is usable, but not battle tested. It works for me, and covers
 the features I need on a daily basis.
 
 Structure
 ---------
 
-The git/fs program provides a file system mounted on /mnt/git.  It
+The git9/fs program provides a file system mounted on /mnt/git.  It
 provides a read-only view into the repository contents to allow
 scripts to inspect the data.  Surrounding scripts and binaries will
 manipulate the repository contents directly.  These changes will be
 immediately mirrored in the file system.
 
-Scripts will generally mount git/fs as needed to do
+Scripts will generally mount git9/fs as needed to do
 their work, but if you want to browse the repository
 manually, run it yourself. You'll get `/mnt/git` mounted,
 with the following contents:
